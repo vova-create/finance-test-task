@@ -1,0 +1,36 @@
+.cardWrapper {
+    font-size: 12px;
+    display: flex;
+    margin: 2vh;
+
+}
+
+.card {
+    min-height: 4vh;
+    min-width: 15vh;
+    border: 1px solid lightgrey;
+    border-radius: 5%;
+    box-shadow: 1px 1px;
+    padding: 5px;
+}
+
+.cardName {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.priceChange {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.percentageUp {
+    color: green;
+}
+
+.percentageDown {
+    color: tomato;
+}

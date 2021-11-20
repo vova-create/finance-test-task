@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import Card from "./components/Card";
+import { io } from "socket.io-client";
+import {useEffect, useState} from "react";
+
 
 function App() {
-  return (
+    const [value, setValue] = useState([])
+
+    useEffect(() => {
+        const socket = io('http://localhost:4000');
+        socket.emit("start")
+        socket.on("ticker", (data) => {
+            setValue(data)
+        })
+}, [])
+
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {value.map((element) => {
+            return  <Card ticker={element.ticker} price={element.price} change={element.change} exchange={element.exchange} changePercentage={element.change_percent}/>
+        })}
     </div>
   );
 }
 
 export default App;
+
+
